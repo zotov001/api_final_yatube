@@ -29,6 +29,7 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         fields = '__all__'
         model = Comment
+        read_only_fields = ('author', 'post')
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -54,6 +55,8 @@ class FollowSerializer(serializers.ModelSerializer):
         ]
 
     def validate(self, folower):
+        """не совсем понял про спец. метод,
+        что то на подобии folower['following'] is None?"""
         if self.context.get('request').user == folower['following']:
             raise serializers.ValidationError(
                 'Вы уже подписаны на этого автора!'
