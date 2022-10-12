@@ -54,11 +54,10 @@ class FollowSerializer(serializers.ModelSerializer):
             )
         ]
 
-    def validate(self, folower):
-        """не совсем понял про спец. метод,
-        что то на подобии folower['following'] is None?"""
-        if self.context.get('request').user == folower['following']:
+    def validate(self, follower):
+        """не совсем понял про спец. метод"""
+        if self.context.get('request').user == follower['following']:
             raise serializers.ValidationError(
                 'Вы уже подписаны на этого автора!'
             )
-        return folower
+        return follower
