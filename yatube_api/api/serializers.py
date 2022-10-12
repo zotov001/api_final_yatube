@@ -55,7 +55,6 @@ class FollowSerializer(serializers.ModelSerializer):
         ]
 
     def validate_following(self, follower):
-        """не совсем понял про спец. метод"""
         if self.context.get('request').user == follower:
             raise serializers.ValidationError(
                 'Вы уже подписаны на этого автора!'
